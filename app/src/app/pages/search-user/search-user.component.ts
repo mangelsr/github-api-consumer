@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+
+import { User } from 'src/app/models/user.model';
 import { UserSearchService } from 'src/app/services/user-search.service';
 
 @Component({
@@ -12,11 +14,22 @@ export class SearchUserComponent implements OnInit {
   
   constructor(private userSearchService: UserSearchService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   searchUsername() {
     this.userSearchService.searchUser(this.username);
+  }
+
+  get user(): User|undefined {
+    return this.userSearchService.user;
+  }
+
+  get loading(): boolean {
+    return this.userSearchService.loading;
+  }
+
+  get error(): string {
+    return this.userSearchService.error;
   }
 
 }

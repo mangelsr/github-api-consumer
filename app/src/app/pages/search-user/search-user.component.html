@@ -1,10 +1,37 @@
 <form class="row align-items-center justify-content-center" (submit)="searchUsername()">
     <div class="col-8 col-lg-4">
         <label class="visually-hidden" for="username">Username</label>
-        <input id="username" name="username" type="text" class="form-control"
-            placeholder="Username" required [(ngModel)]="username" >
-    </div>
-    <div class="col-4 col-lg-3">
-        <button type="submit" class="btn btm-block btn-primary">Seach</button>
+        <input id="username" name="username" type="text" class="form-control" placeholder="Username" required
+            [(ngModel)]="username">
+        </div>
+    <div class="col col-lg-2">
+        <button [disabled]="this.loading || this.username.length == 0" type="submit" class="btn btm-block btn-primary">Seach</button>
     </div>
 </form>
+
+<ng-container *ngIf="this.loading">
+    <div class="d-flex">
+        <div class="mx-auto my-5 spinner-border text-dark" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="this.error">
+    <div class="d-flex ">
+        <div class="alert alert-danger mx-auto my-5" role="alert">
+            {{ this.error }}
+        </div>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="this.user">
+    <div class="mt-5 row justify-content-center">
+        <div class="col-8 col-lg-5">
+            <img class="img img-fluid rounded mx-auto" [src]="this.user.avatar_url" alt="Avatar image">
+            <h2>{{ this.user.name }}</h2>
+            <p>{{this.user.created_at | date: 'yyyy-MM-dd' }}</p>
+            <p><a class="btn btn-secondary" href="#">View details »</a></p>
+        </div>
+    </div>
+</ng-container>
