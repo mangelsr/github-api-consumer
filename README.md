@@ -10,6 +10,7 @@ To run this project locally you need to have installed:
 
 ### Steps
 1. Clone the repository
-2. Start angular app with `ng serve`
-3. Configure your MongoDB in `server/src/datasources/db.datasource.ts`
-4. Start loopback server with 11 `npm start`
+2. Install dependencies of both projects
+3. Start angular app with `ng serve`
+4. Configure your MongoDB in `server/src/datasources/db.datasource.ts`
+5. Start loopback server with 11 `npm start`
